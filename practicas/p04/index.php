@@ -82,7 +82,7 @@
 <hr>
     <h2>Ejercicio 3</h2>
         <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
-            verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+            verificar la evolución del <em>tipo</em> de estas variables (imprime todos los componentes de los
             arreglo):</p>
             $a = "PHP5"; <br>
             $z[] = &$a; <br>
@@ -119,7 +119,7 @@
     
     <h2>Ejercicio 4</h2>
     <p>Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
-    la matriz $GLOBALS o del modificador global de PHP.</p>
+    la matriz <em>$GLOBALS</em> o del modificador <em>global</em> de PHP.</p>
     <?php
         $GLOBALS['a'] = "PHP5 ";
         echo '<li>$a: ' . $GLOBALS['a'] . '</li>';
@@ -170,6 +170,49 @@
             echo "<li>$c </li><br>";
             unset($a, $b, $c);
         ?>
+    <br>
+    <hr>
+        <h2>Ejercicio 6</h2>
+        <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
+        usando la función <em>var_dump(datos)</em>.</p>
+        <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
+        en uno que se pueda mostrar con un <em>echo</em>:</p>
+        $a = "0"; <br>
+        $b = "TRUE"; <br>
+        $c = FALSE; <br>
+        $d = ($a OR $b); <br>
+        $e = ($a AND $c); <br>
+        $f = ($a XOR $b); <br>
+
+
+        <?php
+            $a = "0";
+            $b = "TRUE";
+            $c = FALSE;
+            $d = ($a OR $b); 
+            $e = ($a AND $c); 
+            $f = ($a XOR $b); 
+
+            echo "<br><br><li>";
+            var_dump($a);
+            echo "</li><br><li>";
+            var_dump($b);
+            echo "</li><br><li>";
+            var_dump($c);
+            echo "</li><br><li>";
+            var_dump($d);
+            echo "</li><br><li>";
+            var_dump($e);
+            echo "</li><br><li>";
+            var_dump($f);
+            echo "</li><br>";
+                
+            echo '<br>Valor de $c y $e transformados:<br><br>';
+            echo '<li>$c: ' . var_export($c, true) . '</li><br>';
+            echo '<li>$e: ' . var_export($e, true) . '</li><br>';
+        ?>
+    <br>
+    <hr>
 
 
 
