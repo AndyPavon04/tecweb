@@ -5,6 +5,7 @@
     <title>Práctica 4</title>
 </head>
 <body>
+
     <h2>Ejercicio 1</h2>
     <p>Determina cuál de las siguientes variables son válidas y explica por qué:</p>
     <p>$_myvar,  $_7var,  myvar,  $myvar,  $var7,  $_element1, $house*5</p>
@@ -30,8 +31,9 @@
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
  ?>
-
+<hr>
     <h2>Ejercicio 2</h2>
+
     <?php
 
     
@@ -77,7 +79,41 @@
  
  ?>
 
+<hr>
+    <h2>Ejercicio 3</h2>
+        <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
+            verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+            arreglo):</p>
+            $a = "PHP5"; <br>
+            $z[] = &$a; <br>
+            $b = "5a version de PHP"; <br>
+            $c = $b * 10; <br>
+            $a .= $b; <br>
+            $b *= $c; <br>
+            $z[0] = "MySQL"; <br>
 
+        <br>
+
+        <p><b>Mostrando contenido:</b></p>
+        <?php
+            $a = "PHP5 ";
+            echo '<li>$a: '.$a.'</li>';
+            $z[] = &$a;
+            echo '<li>$z: ' . print_r($z, true) . '</li>';
+            $b = "5a version de PHP";
+            echo '<li>$b: '.$b.'</li>';
+            $c = intval($b)*10;
+            echo '<li>$c: '.$c.'</li>';
+            $a .= $b;
+            echo '<li>$a: '.$a.'</li>';
+            settype($b, 'int');
+            $b *= $c;
+            echo '<li>$b: '.$b.'</li>';
+            $z[0] = "MySQL";
+            echo '<li>$z: ' . print_r($z, true) . '</li>';
+        ?>
+
+    <br>
 
 
 </body>
