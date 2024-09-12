@@ -29,28 +29,53 @@
         placeholder="No más de 300 caracteres de longitud"></textarea></li>
         </ul>
       </fieldset>
+
       <h2>Diseña tus Mike personalizados:</h2>
-  
-      <p>Diseño personalizado del Tenis</p>
-  
-      <p>Color <em>(escoge uno)</em>:</p>
-        <ul>
-        <li> <input type="radio" name="color" value="Rojo" required > Rojo</li>
-        <li> <input type="radio" name="color" value="Azul" required > Azul</li>
-        <li> <input type="radio" name="color" value="Negro" required > Negro</li>
-        <li> <input type="radio" name="color" value="Plateado" required > Plateado</li>
-        </ul>
-  
-      <p>Características <em>(escoge tantas como quieras)</em>:</p>
-        <ul>
-        <li> <input type="checkbox" name="features[]" value="Colores brillantes"> Colores brillantes </li>
-        <li> <input type="checkbox" name="features[]" value="Logo metálico"> Logo metálico</li>
-        <li> <input type="checkbox" name="features[]" value="Suela luminosa"> Suela luminosa</li>
-        <li> <input type="checkbox" name="features[]" value="WiFi integrado"> WiFi integrado</li>
-        </ul>
-  
-      <p>Talla</p>
-      <p>Las medidas reflejan el estándar masculino:</p>
+
+      <fieldset>
+      <legend>Diseño personalizado del Tenis</legend>  
+
+      <fieldset>
+
+        <legend>Color <em>(escoge uno)</em>:</legend>
+          <ul>
+          <li> <input type="radio" name="color" value="Rojo" required > Rojo</li>
+          <li> <input type="radio" name="color" value="Azul" required > Azul</li>
+          <li> <input type="radio" name="color" value="Negro" required > Negro</li>
+          <li> <input type="radio" name="color" value="Plateado" required > Plateado</li>
+          </ul>
+      </fieldset>
+        
+      <fieldset>
+        <legend>Características <em>(escoge tantas como quieras)</em>:</legend>
+        
+          <ul>
+          <li> <input type="checkbox" name="features[]" value="Colores brillantes"> Colores brillantes </li>
+          <li> <input type="checkbox" name="features[]" value="Logo metálico"> Logo metálico</li>
+          <li> <input type="checkbox" name="features[]" value="Suela luminosa"> Suela luminosa</li>
+          <li> <input type="checkbox" name="features[]" value="WiFi integrado"> WiFi integrado</li>
+          </ul>
+      </fieldset>
+        
+    
+          <fieldset>
+            <legend>Talla</legend>
+            <p>Las medidas reflejan el estándar masculino: 
+              <select name="size">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+              </select>
+            </p>
+            </fieldset>
+      </fieldset>
+      <br>
       <button type="submit">¡Chidos mis Tenis!</button>
       <input type="reset"></p>
       </form>
