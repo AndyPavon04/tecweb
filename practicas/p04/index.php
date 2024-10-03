@@ -31,91 +31,103 @@
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
  ?>
-<hr>
+<hr/>
     <h2>Ejercicio 2</h2>
-
+    <p>Proporcionamos los primeros valores a $a, $b, $c:</p>
     <?php
-
-    
-        
-        echo "Proporcionamos los primeros valores a \$a, \$b, \$c:<br>";
-
         $a = "ManejadorSQL";
         $b = 'MySQL';
         $c = &$a;
         //Mostramos
+// Abrimos la lista desordenada
+        echo "<ul>";
+        echo "<li>\$a = $a</li>";
+        echo "<li>\$b = $b</li>";
+        echo "<li>\$c = $c</li>";
+        echo "</ul>";
 
-        echo "\$a = $a<br>";
-        echo "\$b = $b<br>";
-        echo "\$c = $c</p>";
 
 
-        echo "Agregamos las siguientes asignaciones:<br>";
+        echo "<p>Agregamos las siguientes asignaciones:</p>";
 
         $a = "HP server";
         $b = &$a;
 
-        echo "\$a = HP server<br>";
-        echo "\$b = &\$a;";
-        
-        echo '</p>';
-        echo "Volvemos a mostrar:";
+        // Abrimos la lista desordenada
+        echo "<ul>";
+        echo "<li>\$a = HP server</li>";
+        echo "<li>\$b =&amp;\$a;</li>"; 
+        echo "</ul>";
 
-        echo '<br>';
-        echo "\$a = $a<br>";
-        echo "\$b = $b<br>";
-        echo "\$c = $c</p>";
+        
+        echo "<p>Volvemos a mostrar:</p>";
+
+        echo "<ul>";
+        echo "<li>\$a = $a</li>";
+        echo "<li>\$b = $b</li>";
+        echo "<li>\$c = $c</li>";
+        echo "</ul>";
+        
 
         // Explicación de lo que ocurrió
         echo "<h4>¿Qué ocurrió?</h4>";
-        echo "Después de reasignar \$a con el valor 'PHP server', las ocurrieron siguientes cosas:<br>";
-        echo "<br>";
+        echo "<p>Después de reasignar \$a con el valor 'PHP server', las ocurrieron siguientes cosas:</p>";
+        echo "<ul>";
         echo "<li>\$a ahora tiene el valor 'PHP server'.</li>";
         echo "<li>\$b fue asignado como una referencia a \$a, por lo que \$b también toma el valor 'PHP server'.</li>";
         echo "<li>\$c, que sigue siendo una referencia a \$a, también refleja el nuevo valor de \$a ('PHP server').</li>";
-        echo "<br>";
+        echo "</ul>";
         echo "<p>Esto ocurre porque tanto \$b como \$c son referencias a \$a, lo que significa que cualquier cambio en \$a
                 también se refleja en las variables referenciadas.</p>";
  
  ?>
 
-<hr>
+<hr/>
     <h2>Ejercicio 3</h2>
         <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
             verificar la evolución del <em>tipo</em> de estas variables (imprime todos los componentes de los
             arreglo):</p>
-            $a = "PHP5"; <br>
-            $z[] = &$a; <br>
-            $b = "5a version de PHP"; <br>
-            $c = $b * 10; <br>
-            $a .= $b; <br>
-            $b *= $c; <br>
-            $z[0] = "MySQL"; <br>
+            <p>$a = "PHP5"; </p>
+            <p>$z[] = &amp;$a; </p>
+            <p>$b = "5a version de PHP";</p>
+            <p>$c = $b * 10;</p>
+            <p>$a .= $b;</p>
+            <p>$b *= $c;</p>
+            <p>$z[0] = "MySQL";</p> 
 
-        <br>
 
-        <p><b>Mostrando contenido:</b></p>
+
+        <p>Mostrando contenido:</p>
         <?php
-            $a = "PHP5 ";
-            echo '<li>$a: '.$a.'</li>';
-            $z[] = &$a;
-            echo '<li>$z: ' . print_r($z, true) . '</li>';
-            $b = "5a version de PHP";
-            echo '<li>$b: '.$b.'</li>';
-            $c = intval($b)*10;
-            echo '<li>$c: '.$c.'</li>';
-            $a .= $b;
-            echo '<li>$a: '.$a.'</li>';
-            settype($b, 'int');
-            $b *= $c;
-            echo '<li>$b: '.$b.'</li>';
-            $z[0] = "MySQL";
-            echo '<li>$z: ' . print_r($z, true) . '</li>';
+        echo "<ul>";
+        $a = "PHP5 ";
+        echo '<li>$a: ' . $a . '</li>';
+
+        $z[] = &$a;
+        echo '<li>$z: ' . print_r($z, true) . '</li>';
+
+        $b = "5a version de PHP";
+        echo '<li>$b: ' . $b . '</li>';
+
+        $c = intval($b) * 10;
+        echo '<li>$c: ' . $c . '</li>';
+
+        $a .= $b;
+        echo '<li>$a: ' . $a . '</li>';
+
+        settype($b, 'int');
+        $b *= $c;
+        echo '<li>$b: ' . $b . '</li>';
+
+        $z[0] = "MySQL";
+        echo '<li>$z: ' . print_r($z, true) . '</li>';
+        echo "</ul>"; 
+
         ?>
 
-    <br>
+    
 
-    <hr>
+    <hr/>
     
     <h2>Ejercicio 4</h2>
     <p>Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
@@ -145,14 +157,14 @@
         unset($a, $z, $b, $c);
     ?>
 
-<br>
-    <hr>
+
+    <hr/>
         <h2>Ejercicio 5</h2>
         <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
-        $a = “7 personas”<br>
-        $b = (integer) $a;<br>
-        $a = “9E3”;<br>
-        $c = (double) $a;<br>
+        <p>$a = “7 personas”</p>
+        <p>$b = (integer) $a;</p>
+        <p>$a = “9E3”;</p>
+        <p>$c = (double) $a;</p>
 
         <?php
             $a = "7 personas";
@@ -170,19 +182,19 @@
             echo "<li>$c </li><br>";
             unset($a, $b, $c);
         ?>
-    <br>
-    <hr>
+    
+    <hr/>
         <h2>Ejercicio 6</h2>
         <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
         usando la función <em>var_dump(datos)</em>.</p>
         <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
         en uno que se pueda mostrar con un <em>echo</em>:</p>
-        $a = "0"; <br>
-        $b = "TRUE"; <br>
-        $c = FALSE; <br>
-        $d = ($a OR $b); <br>
-        $e = ($a AND $c); <br>
-        $f = ($a XOR $b); <br>
+        <p>$a = "0";</p> 
+        <p>$b = "TRUE";</p>
+        <p>$c = FALSE;</p>
+        <p>$d = ($a OR $b);</p>
+        <p>$e = ($a AND $c);</p>
+        <p>$f = ($a XOR $b);</p>
 
 
         <?php
@@ -212,14 +224,14 @@
             echo '<li>$e: ' . var_export($e, true) . '</li><br>';
         ?>
 
-    <br>
-    <hr>
+    
+    <hr/>
         <h2>Ejercicio 7</h2>
         <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
         <p>a. La versión de Apache y PHP,</p>
         <p>b. El nombre del sistema operativo (servidor),</p>
         <p>c. El idioma del navegador (cliente).</p>
-        <br>
+        <p></p>
 
         <?php
             echo '<li><b>Versión de Apache y PHP:</b> ' . $_SERVER['SERVER_SOFTWARE'] . '</li><br>';
