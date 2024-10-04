@@ -49,8 +49,8 @@
         //Original
         //$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}',0)";
         //Modificado
-        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen)
-         VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', 
+        $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen) 
+        VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
         if ($link->query($sql)) { // Ejecuta la consulta y guarda el resultado
             echo '<p>Producto insertado con ID: ' . $link->insert_id . '</p>';
             echo '<h2>Resumen del Producto:</h2>';
