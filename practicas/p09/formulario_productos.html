@@ -9,38 +9,48 @@
     list-style-type: none;
     }
     </style>
+    <script src="./src/main.js"></script> 
 </head>
 
 <body>
     <h1>Registro de productos</h1>
-    
-
 
     <form id="formularioProductos" action="http://localhost/tecweb/practicas/p08/set_producto_v2.php" method="post">
 
-    <h2>Información de Producto</h2>
-    <p>Inserta un producto. Completa todos los campos necesarios para poder agregarlo.</p>
+    <h2>Añade tus guitarras nuevas</h2>
 
     <fieldset>
-        <legend>Información</legend>
+        <legend>Inresa tu guitarra</legend>
 
         <ul>
-        <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name"></li><br/>
-        <li><label for="form-brand">Marca:</label> <input type="text" name="brand" id="form-brand"></li><br/>
-        <li><label for="form-model">Modelo:</label> <input type="text" name="model" id="form-model"></li><br/>
-        <li><label for="form-price">Precio:</label> <input type="number" name="price" id="form-price" step="0.01"></li><br/>
-        <li><label for="form-details">Detalles: </label><br><textarea name="details" rows="4" cols="60" id="form-details" placeholder="No más de 300 caracteres de longitud"></textarea></li><br/>
-        <li><label for="form-units">Unidades:</label> <input type="number" name="units" id="form-units"></li><br/>
-        <li><label for="form-img">Imagen:</label> <input type="text" name="img" id="form-img"></li><br/>
-
+            <li><label for="form-name">Nombre:</label> <input type="text" name="name" id="form-name" onblur="validarNombre();" required></li><br />
+            <li> <label for="form-brand">Marca:</label>
+                <select name="marca" id="form-brand" onblur="validarMarca();" required>
+                    <option value="" disabled selected>Selecciona una marca</option>
+                    <option value="The Ordinary">Epiphone</option>
+                    <option value="Drunk Elephant">Fender</option>
+                    <option value="CLINIQUE">Gibson</option>
+                    <option value="ISDIN">Oscar Smichdt</option>
+                    <option value="YSL">Taylor</option>
+                    <option value="Neutrogena">Yamaha</option>
+                    <option value="Rare Beauty">Paracho</option>
+                
+                </select>
+            </li><br />
+            <li><label for="form-model">Modelo:</label> <input type="text" name="model" id="form-model" onblur="validarModelo();" required></li><br />
+            <li><label for="form-price">Precio:</label> <input type="number" name="price" id="form-price" onblur="validarPrecio();" required></li><br />
+            <li><label for="form-details">Detalles...</label><br><textarea name="details" rows="4" cols="60" id="form-details" placeholder="No más de 250 caracteres de longitud" onblur="validarDetalles();" ></textarea></li><br />
+            <li><label for="form-units">Unidades:</label> <input type="number" name="units" id="form-units" onblur="validarUnidades();" required></li><br />
+            <li><label for="form-img">Imagen:</label> <input type="text" name="img" id="form-img" onblur="validarImagen();" required></li><br />
         </ul>
     </fieldset>
 
     <p>
-        <input type="submit" value="Agregar Producto">
+        <input type="submit" value="Subir">
         <input type="reset">
     </p>
 
     </form>
+
 </body>
 </html>
