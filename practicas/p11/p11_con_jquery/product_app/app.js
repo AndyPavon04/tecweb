@@ -145,7 +145,7 @@ $(document).ready(function() {
             alert('Marca no válida, selecciona una marca válida de guitarras (Epiphone, Gibson, Taylor, Fender, Yamaha, Oscar Schmidt)');
             return false;
         }
-
+    
         // Validar modelo
         if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
             alert('Ingresa un modelo');
@@ -180,7 +180,7 @@ $(document).ready(function() {
 
         // Validar imagen
         if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
-            finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+            finalJSON.imagen = 'img/default.png';  // Asignar una imagen por defecto
         }
 
         let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
@@ -213,7 +213,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.product-delete', function() {
-        if( confirm("¿De verdad deseas eliminar el producto?") ) {
+        if( confirm("De verdad deseas eliminar el Producto") ) {
             var id = event.target.parentElement.parentElement.getAttribute("productId");
             $.ajax({
                 url: './backend/product-delete.php?id='+id,
