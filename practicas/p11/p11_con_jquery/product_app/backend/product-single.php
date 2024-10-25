@@ -9,15 +9,15 @@
         $sql = "SELECT * FROM productos WHERE id = '{$id}'";
 
         if ( $result = $conexion->query($sql) ) {
-            $rows = $result->fetch_all(MYSQLI_ASSOC); // OBTIENE TODOS LOS REGISTROS Y LOS GUARDA EN UN ARRAY
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
 
             if(!is_null($rows)) {
                 foreach($rows as $num => $row) {
                     foreach($row as $key => $value) {
-                        $data[$num][$key] = $value;  
+                        $data[$num][$key] = ($value);  // CODIFICA CADA CAMPO EN UTF-8
                     }
                 }
-            } 
+            }
             $result->free();
         } else {
             die('Query Error: '.mysqli_error($conexion));

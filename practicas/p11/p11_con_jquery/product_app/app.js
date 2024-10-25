@@ -123,94 +123,105 @@ $(document).ready(function() {
         var productoJsonString = document.getElementById('description').value;
         var finalJSON = JSON.parse(productoJsonString);
         finalJSON['nombre'] = document.getElementById('name').value;
-        productoJsonString = JSON.stringify(finalJSON, null, 2);
+        finalJSON['id'] = document.getElementById('productId').value;
+        productoJsonString = JSON.stringify(finalJSON, null, 3);
+
+        let template_bar = '';
+        let errores = [];
 
         // Validar nombre
         if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
-            alert('Ingresa un nombre');
-            return false;
+            errores.push('Ingresa un nombre.');
         }
         if (finalJSON.nombre.length > 100) {
-            alert('El nombre debe tener máximo 100 caracteres');
-            return false;
+            errores.push('El nombre debe tener menos de 100 caracteres.');
         }
 
         // Validar marca
         const marcasValidas = ['Epiphone', 'Gibson', 'Taylor', 'Fender', 'Yamaha', 'Oscar Schmidt'];
         if (!finalJSON.marca || finalJSON.marca.length == 0) {
-            alert('Selecciona una marca');
-            return false;
+            errores.push('Selecciona una marca.');
         }
         if (!marcasValidas.includes(finalJSON.marca)) {
-            alert('Marca no válida, selecciona una marca válida de guitarras (Epiphone, Gibson, Taylor, Fender, Yamaha, Oscar Schmidt)');
-            return false;
+            errores.push('Marca no válida.');
         }
-    
+
         // Validar modelo
         if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
-            alert('Ingresa un modelo');
-            return false;
+            errores.push('Ingresa un modelo.');
         }
         if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
-            alert('El modelo debe ser alfanumérico y menor a 25 caracteres');
-            return false;
+            errores.push('El modelo debe ser alfanumérico y menor a 25 caracteres.');
         }
 
         // Validar precio
         if (!finalJSON.precio || finalJSON.precio.length == 0) {
-            alert('Ingresa el precio');
-            return false;
+            errores.push('Ingresa el precio.');
         }
         if (finalJSON.precio < 99.99) {
-            alert('El precio debe ser mayor a $99.99');
-            return false;
+            errores.push('El precio debe ser mayor a $99.99.');
         }
 
         // Validar detalles
         if (finalJSON.detalles && finalJSON.detalles.length > 250) {
-            alert('Los detalles deben tener máximo 250 caracteres');
-            return false;
+            errores.push('Los detalles deben tener máximo 250 caracteres.');
         }
 
         // Validar unidades
         if (finalJSON.unidades == null || finalJSON.unidades < 0) {
-            alert('Cantidad mínima de unidades es 0');
-            return false;
+            errores.push('La cantidad mínima de unidades es 0.');
         }
 
         // Validar imagen
         if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
-            finalJSON.imagen = 'img/default.png';  // Asignar una imagen por defecto
+            finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
         }
 
-        let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+        // Si hay errores, mostrarlos todos
+        if (errores.length > 0) {
+            template_bar = '<ul>';
+            template_bar+= '<li style="list-style: none;">status: Error</li>';
+            errores.forEach(error => {
+                template_bar += `<li style="list-style: none;">message: ${error}</li>`;
+            });
+            template_bar += '</ul>';
 
-        $.ajax({
-            url: url,
-            type: 'POST',
-            contentType: 'application/json', // Especificar que estamos enviando JSON
-            data: JSON.stringify(finalJSON),
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+        }
 
-            success: function(response) {
-                console.log(response);
-                let respuesta = JSON.parse(response);
-                let template_bar = '';
-                template_bar += `
-                            <li style="list-style: none;">status: ${respuesta.status}</li>
-                            <li style="list-style: none;">message: ${respuesta.message}</li>
-                        `;
+        else{
+            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+            console.log(finalJSON);
 
-                document.getElementById("product-result").className = "card my-4 d-block";
-                document.getElementById("container").innerHTML = template_bar;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: 'application/json', // Especificar que estamos enviando JSON
+                data: JSON.stringify(finalJSON),
 
-                listadoProductos();
-                init();
-                edit = false;
-                $('#submit-button').text('Agregar Producto');
-                $('#name').val('');
-            }
-        });
+                success: function(response) {
+                    console.log(response);
+                    let respuesta = JSON.parse(response);
+                    let template_bar = '';
+                    template_bar += `
+                                <li style="list-style: none;">status: ${respuesta.status}</li>
+                                <li style="list-style: none;">message: ${respuesta.message}</li>
+                            `;
+
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("container").innerHTML = template_bar;
+
+                    listadoProductos();
+                    init();
+                    edit = false;
+                    $('#submit-button').text('Agregar Producto');
+                    $('#name').val('');
+                }
+            });
+        }
     });
+
 
     $(document).on('click', '.product-delete', function() {
         if( confirm("De verdad deseas eliminar el Producto") ) {
