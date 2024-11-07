@@ -1,59 +1,28 @@
 <?php
-include_once __DIR__.'/database.php';
+    include_once __DIR__.'/database.php';
 
-// SE OBTIENE LA INFORMACIÓN DEL PRODUCTO ENVIADA POR EL CLIENTE
-$producto = file_get_contents('php://input');
-$data = array(
-    'status'  => 'error',
-    'message' => 'No se encontró el producto o ocurrió un error'
-);
-
-if (!empty($producto)) {
-    // SE TRANSFORMA EL STRING DEL JSON A OBJETO
-    $jsonOBJ = json_decode($producto);
-
-    // Verificar que el nombre del producto existe en el JSON
-    if (isset($jsonOBJ->nombre)) {
-        // SE ASUME QUE LOS DATOS YA FUERON VALIDADOS ANTES DE ENVIARSE
-        $nombre = $jsonOBJ->nombre;
-        $sql = "SELECT * FROM productos WHERE nombre = '{$nombre}' AND eliminado = 0";
-        $result = $conexion->query($sql);
-
-        // Verificar si existe el producto con el nombre proporcionado
-        if ($result->num_rows > 0) {
-            // SE PREPARA EL UPDATE
-            $conexion->set_charset("utf8");
-            $sql = "UPDATE productos SET
-                        marca = '{$jsonOBJ->marca}',
-                        modelo = '{$jsonOBJ->modelo}',
-                        precio = {$jsonOBJ->precio},
-                        detalles = '{$jsonOBJ->detalles}',
-                        unidades = {$jsonOBJ->unidades},
-                        imagen = '{$jsonOBJ->imagen}'
-                    WHERE nombre = '{$nombre}' AND eliminado = 0";
-
-            // Ejecutar la consulta de actualización
-            if ($conexion->query($sql)) {
-                $data['status'] = "success";
-                $data['message'] = "Producto actualizado correctamente";
-            } else {
-                $data['message'] = "ERROR: No se pudo ejecutar $sql. " . mysqli_error($conexion);
-            }
-        } else {
-            // Producto no encontrado
-            $data['message'] = "No se encontró el producto con el nombre especificado.";
+    // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
+    $data = array(
+        'status'  => 'error',
+        'message' => 'La consulta falló'
+    );
+    // SE VERIFICA HABER RECIBIDO EL ID
+    if( isset($_POST['id']) ) {
+        $jsonOBJ = json_decode( json_encode($_POST) );
+        // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+        $sql =  "UPDATE productos SET nombre='{$jsonOBJ->nombre}', marca='{$jsonOBJ->marca}',";
+        $sql .= "modelo='{$jsonOBJ->modelo}', precio={$jsonOBJ->precio}, detalles='{$jsonOBJ->detalles}',"; 
+        $sql .= "unidades={$jsonOBJ->unidades}, imagen='{$jsonOBJ->imagen}' WHERE id={$jsonOBJ->id}";
+        $conexion->set_charset("utf8");
+        if ( $conexion->query($sql) ) {
+            $data['status'] =  "success";
+            $data['message'] =  "Producto actualizado";
+		} else {
+            $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
         }
-
-        $result->free();
-    } else {
-        // Error si no se envió el nombre
-        $data['message'] = "El nombre del producto no fue proporcionado en el JSON.";
-    }
-
-    // Cerrar la conexión
-    $conexion->close();
-}
-
-// SE HACE LA CONVERSIÓN DE ARRAY A JSON
-echo json_encode($data, JSON_PRETTY_PRINT);
+		$conexion->close();
+    } 
+    
+    // SE HACE LA CONVERSIÓN DE ARRAY A JSON
+    echo json_encode($data, JSON_PRETTY_PRINT);
 ?>
