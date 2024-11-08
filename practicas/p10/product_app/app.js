@@ -8,85 +8,6 @@ var baseJSON = {
     "imagen": "img/default.png"
 };
 
-// FUNCIÓN CALLBACK DE BOTÓN "Buscar"
-function buscarID(e) {
-    /**
-     * Revisar la siguiente información para entender porqué usar event.preventDefault();
-     * http://qbit.com.mx/blog/2013/01/07/la-diferencia-entre-return-false-preventdefault-y-stoppropagation-en-jquery/#:~:text=PreventDefault()%20se%20utiliza%20para,escuche%20a%20trav%C3%A9s%20del%20DOM
-     * https://www.geeksforgeeks.org/when-to-use-preventdefault-vs-return-false-in-javascript/
-     */
-    e.preventDefault();
-
-    // SE OBTIENE EL ID A BUSCAR
-    var id = document.getElementById('search').value;
-
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/read.php', true);
-    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log('[CLIENTE]\n'+client.responseText);
-            
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
-            
-            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-            if(Object.keys(productos).length > 0) {
-                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                let descripcion = '';
-                    descripcion += '<li>precio: '+productos.precio+'</li>';
-                    descripcion += '<li>unidades: '+productos.unidades+'</li>';
-                    descripcion += '<li>modelo: '+productos.modelo+'</li>';
-                    descripcion += '<li>marca: '+productos.marca+'</li>';
-                    descripcion += '<li>detalles: '+productos.detalles+'</li>';
-                
-                // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
-                let template = '';
-                    template += `
-                        <tr>
-                            <td>${productos.id}</td>
-                            <td>${productos.nombre}</td>
-                            <td><ul>${descripcion}</ul></td>
-                        </tr>
-                    `;
-
-                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                document.getElementById("productos").innerHTML = template;
-            }
-        }
-    };
-    client.send("id="+id);
-}
-
-
-// SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
-function getXMLHttpRequest() {
-    var objetoAjax;
-
-    try{
-        objetoAjax = new XMLHttpRequest();
-    }catch(err1){
-        /**
-         * NOTA: Las siguientes formas de crear el objeto ya son obsoletas
-         *       pero se comparten por motivos historico-académicos.
-         */
-        try{
-            // IE7 y IE8
-            objetoAjax = new ActiveXObject("Msxml2.XMLHTTP");
-        }catch(err2){
-            try{
-                // IE5 y IE6
-                objetoAjax = new ActiveXObject("Microsoft.XMLHTTP");
-            }catch(err3){
-                objetoAjax = false;
-            }
-        }
-    }
-    return objetoAjax;
-}
-
 function init() {
     /**
      * Convierte el JSON a string para poder mostrarlo
@@ -96,152 +17,250 @@ function init() {
     document.getElementById("description").value = JsonString;
 }
 
-function buscarProducto(e) {
-    e.preventDefault();
+$(document).ready(function() {
 
-    // SE OBTIENE EL TÉRMINO DE BÚSQUEDA
-    var buscar = document.getElementById('search').value;
+    let edit = false;
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/read.php', true);
-    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log('[CLIENTE]\n' + client.responseText);
+    console.log('JQuery está trabajando!')
+    listadoProductos();
 
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let productos = JSON.parse(client.responseText);
+    function listadoProductos(){
+        $.ajax({
+            url: './backend/product-list.php',
+            type: 'GET',
+            success: function(response){
+                let productos = JSON.parse(response);
+                if(Object.keys(productos).length > 0) {
+                    let template = '';
 
-            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-            if (productos.length > 0) {
-                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                let template = '';
-                productos.forEach(producto => {
-                    let descripcion = '';
-                    descripcion += `<li>precio: ${producto.precio !== undefined ? producto.precio : 'No disponible'}</li>`;
-                    descripcion += `<li>unidades: ${producto.unidades !== undefined ? producto.unidades : 'No disponible'}</li>`;
-                    descripcion += `<li>modelo: ${producto.modelo !== undefined ? producto.modelo : 'No disponible'}</li>`;
-                    descripcion += `<li>marca: ${producto.marca !== undefined ? producto.marca : 'No disponible'}</li>`;
-                    descripcion += `<li>detalles: ${producto.detalles !== undefined ? producto.detalles : 'No disponible'}</li>`;
-
-                    // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
-                    template += `
-                        <tr>
-                            <td>${producto.id !== undefined ? producto.id : 'No disponible'}</td>
-                            <td>${producto.nombre !== undefined ? producto.nombre : 'No disponible'}</td>
-                            <td><ul>${descripcion}</ul></td>
-                        </tr>
-                    `;
-                });
-
-                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                document.getElementById("productos").innerHTML = template;
-            } else {
-                // Manejar el caso cuando no hay productos
-                document.getElementById("productos").innerHTML = '<tr><td colspan="3">No se encontraron productos.</td></tr>';
+                    productos.forEach(producto => {
+                        let descripcion = '';
+                        descripcion += '<li>precio: '+producto.precio+'</li>';
+                        descripcion += '<li>unidades: '+producto.unidades+'</li>';
+                        descripcion += '<li>modelo: '+producto.modelo+'</li>';
+                        descripcion += '<li>marca: '+producto.marca+'</li>';
+                        descripcion += '<li>detalles: '+producto.detalles+'</li>';
+                        template += `
+                            <tr productId="${producto.id}">
+                                <td>${producto.id}</td>
+                                <td>
+                                    <a href="#" class="product-item">${producto.nombre}</a>
+                                </td>
+                                <td><ul>${descripcion}</ul></td>
+                                <td>
+                                    <button class="product-delete btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    document.getElementById("products").innerHTML = template;
+                }
             }
+        });
+    }
+
+    $('#search').keyup(function(e) {
+        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+
+        // Obtener el valor de búsqueda usando jQuery
+        var search = $('#search').val(); // Cambia 'searchInput' por el ID correcto del campo de entrada
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            url: './backend/product-search.php',
+            type: 'GET',
+            data: { search: search },
+            success: function(response) {
+                let productos = JSON.parse(response);
+
+                if (Object.keys(productos).length > 0) {
+                    let template = '';
+                    let template_bar = '';
+
+                    productos.forEach(producto => {
+                        let descripcion = `
+                            <li>precio: ${producto.precio}</li>
+                            <li>unidades: ${producto.unidades}</li>
+                            <li>modelo: ${producto.modelo}</li>
+                            <li>marca: ${producto.marca}</li>
+                            <li>detalles: ${producto.detalles}</li>
+                        `;
+
+                        template += `
+                            <tr productId="${producto.id}">
+                                <td>${producto.id}</td>
+                                <td>${producto.nombre}</td>
+                                <td><ul>${descripcion}</ul></td>
+                                <td>
+                                    <button class="product-delete btn btn-danger" data-id="${producto.id}">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+
+                        template_bar += `<li>${producto.nombre}</li>`;
+                    });
+
+                    // Actualizar el DOM con los resultados
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("container").innerHTML = template_bar;
+                    document.getElementById("products").innerHTML = template;
+                } else {
+                    // Manejar el caso en que no se encuentran productos
+                    document.getElementById("product-result").className = "card my-4 d-none"; // Ocultar el contenedor
+                    document.getElementById("container").innerHTML = ""; // Limpiar la barra de estado
+                    document.getElementById("products").innerHTML = ""; // Limpiar la tabla de productos
+                }
+            },
+        });
+    });
+
+    $('#product-form').submit(function(e) {
+        e.preventDefault();
+        var productoJsonString = document.getElementById('description').value;
+        var finalJSON = JSON.parse(productoJsonString);
+        finalJSON['nombre'] = document.getElementById('name').value;
+        finalJSON['id'] = document.getElementById('productId').value;
+        productoJsonString = JSON.stringify(finalJSON, null, 3);
+
+        let template_bar = '';
+        let errores = [];
+
+        // Validar nombre
+        if (!finalJSON.nombre || finalJSON.nombre.length == 0) {
+            errores.push('Ingresa un nombre.');
         }
-    };
-    client.send("buscar=" + encodeURIComponent(buscar));
-}
-
-////////////////////////////////////
-function validarJson(finalJSON) {
-    // Validar marca
-    const marcasValidas = ['Epiphone', 'Gibson', 'Taylor', 'Fender', 'Yamaha', 'Oscar Schmidt'];
-    if (!finalJSON.marca || finalJSON.marca.length == 0) {
-        alert('Selecciona una marca');
-        return false;
-    }
-    if (!marcasValidas.includes(finalJSON.marca)) {
-        alert('Marca no válida, selecciona una marca válida de guitarras (Epiphone, Gibson, Taylor, Fender, Yamaha, Oscar Schmidt)');
-        return false;
-    }
-    
-    // Validar modelo
-    if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
-        alert('Ingresa un modelo');
-        return false;
-    }
-    if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
-        alert('El modelo debe ser alfanumérico y menor a 25 caracteres');
-        return false;
-    }
-
-    // Validar precio
-    if (!finalJSON.precio || finalJSON.precio.length == 0) {
-        alert('Ingresa el precio');
-        return false;
-    }
-    if (finalJSON.precio < 99.99) {
-        alert('El precio debe ser mayor a $99.99');
-        return false;
-    }
-
-    // Validar detalles
-    if (finalJSON.detalles && finalJSON.detalles.length > 250) {
-        alert('Los detalles deben tener máximo 250 caracteres');
-        return false;
-    }
-
-    // Validar unidades
-    if (finalJSON.unidades == null || finalJSON.unidades < 0) {
-        alert('Cantidad mínima de unidades es 0');
-        return false;
-    }
-
-    // Validar imagen
-    if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
-        finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
-    }
-
-    // Si pasa todas las validaciones
-    return true;
-}
-
-// FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
-function agregarProducto(e) {
-    e.preventDefault();
-
-    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-    var productoJsonString = document.getElementById('description').value;
-    
-    // SE CONVIERTE EL JSON DE STRING A OBJETO
-    var finalJSON = JSON.parse(productoJsonString);
-    
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
-
-    // VALIDAR EL OBJETO JSON ANTES DE ENVIARLO
-    if (!validarJson(finalJSON)) {
-        // Si la validación falla, detener el proceso de envío
-        return;
-    }
-
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON, null, 2);
-
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/create.php', true);
-    client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
-    
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
-            let response = JSON.parse(client.responseText);
-            if (response.success) {
-                window.alert(response.message);  // Mensaje de éxito
-            } else {
-                window.alert('Error: ' + response.message);  // Mensaje de error
-            }
+        if (finalJSON.nombre.length > 100) {
+            errores.push('El nombre debe tener menos de 100 caracteres.');
         }
 
-    };
+        // Validar marca
+        const marcasValidas = ['Epiphone', 'Gibson', 'Taylor', 'Fender', 'Yamaha', 'Oscar Schmidt'];
+        if (!finalJSON.marca || finalJSON.marca.length == 0) {
+            errores.push('Selecciona una marca.');
+        }
+        if (!marcasValidas.includes(finalJSON.marca)) {
+            errores.push('Marca no válida.');
+        }
 
-    // SE ENVÍA EL JSON VALIDADO AL SERVIDOR
-    client.send(productoJsonString);
-}
+        // Validar modelo
+        if (!finalJSON.modelo || finalJSON.modelo.length == 0) {
+            errores.push('Ingresa un modelo.');
+        }
+        if (!/^[a-zA-Z0-9 ]+$/.test(finalJSON.modelo) || finalJSON.modelo.length > 25) {
+            errores.push('El modelo debe ser alfanumérico y menor a 25 caracteres.');
+        }
+
+        // Validar precio
+        if (!finalJSON.precio || finalJSON.precio.length == 0) {
+            errores.push('Ingresa el precio.');
+        }
+        if (finalJSON.precio < 99.99) {
+            errores.push('El precio debe ser mayor a $99.99.');
+        }
+
+        // Validar detalles
+        if (finalJSON.detalles && finalJSON.detalles.length > 250) {
+            errores.push('Los detalles deben tener máximo 250 caracteres.');
+        }
+
+        // Validar unidades
+        if (finalJSON.unidades == null || finalJSON.unidades < 0) {
+            errores.push('La cantidad mínima de unidades es 0.');
+        }
+
+        // Validar imagen
+        if (!finalJSON.imagen || finalJSON.imagen.length == 0) {
+            finalJSON.imagen = 'img/pre.png';  // Asignar una imagen por defecto
+        }
+
+        // Si hay errores, mostrarlos todos
+        if (errores.length > 0) {
+            template_bar = '<ul>';
+            template_bar+= '<li style="list-style: none;">status: Error</li>';
+            errores.forEach(error => {
+                template_bar += `<li style="list-style: none;">message: ${error}</li>`;
+            });
+            template_bar += '</ul>';
+
+            document.getElementById("product-result").className = "card my-4 d-block";
+            document.getElementById("container").innerHTML = template_bar;
+        }
+
+        else{
+            let url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+            console.log(finalJSON);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: 'application/json', // Especificar que estamos enviando JSON
+                data: JSON.stringify(finalJSON),
+
+                success: function(response) {
+                    console.log(response);
+                    let respuesta = JSON.parse(response);
+                    let template_bar = '';
+                    template_bar += `
+                                <li style="list-style: none;">status: ${respuesta.status}</li>
+                                <li style="list-style: none;">message: ${respuesta.message}</li>
+                            `;
+
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("container").innerHTML = template_bar;
+
+                    listadoProductos();
+                    init();
+                    edit = false;
+                    $('#submit-button').text('Agregar Producto');
+                    $('#name').val('');
+                }
+            });
+        }
+    });
+
+
+    $(document).on('click', '.product-delete', function() {
+        if( confirm("De verdad deseas eliminar el Producto") ) {
+            var id = event.target.parentElement.parentElement.getAttribute("productId");
+            $.ajax({
+                url: './backend/product-delete.php?id='+id,
+                type: 'GET',
+                data: {id},
+
+                success: function(response){
+                    let respuesta = JSON.parse(response);
+                    let template_bar = '';
+                    template_bar += `
+                                <li style="list-style: none;">status: ${respuesta.status}</li>
+                                <li style="list-style: none;">message: ${respuesta.message}</li>
+                            `;
+                    document.getElementById("product-result").className = "card my-4 d-block";
+                    document.getElementById("container").innerHTML = template_bar;
+
+                    listadoProductos();
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.product-item', function() {
+        let id = $(this)[0].parentElement.parentElement.getAttribute('productid');
+        $.post('./backend/product-single.php', {id}, function(response){
+            const product = JSON.parse(response);
+            $('#name').val(product[0].nombre);
+            let productWithoutNameAndId = {...product[0]};
+            delete productWithoutNameAndId.nombre;
+            delete productWithoutNameAndId.id;
+            delete productWithoutNameAndId.eliminado;
+
+            
+            edit = true;
+            $('#description').val(JSON.stringify(productWithoutNameAndId, null, 4));
+            $('#submit-button').text('Editar Producto');
+        })
+    });
+});

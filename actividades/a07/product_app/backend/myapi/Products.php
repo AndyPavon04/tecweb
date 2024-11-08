@@ -6,8 +6,8 @@
 
     class Products extends DataBase{
         private $data;
-
-        public function __construct($db, $user= 'root',$pass='zorobabel'){
+        
+        public function __construct($db, $user= 'root',$pass='12345'){
             $this->data = array();
             parent::__construct($db,$user,$pass);
         }
@@ -129,7 +129,7 @@
                     // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
                     foreach($rows as $num => $row) {
                         foreach($row as $key => $value) {
-                            $this->data[$num][$key] = utf8_encode($value);
+                            $this->data[$num][$key] = ($value);
                         }
                     }
                 }
@@ -156,7 +156,7 @@
                         // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
                         foreach($rows as $num => $row) {
                             foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);
+                                $this->data[$num][$key] = ($value);
                             }
                         }
                     }
@@ -182,7 +182,7 @@
                     if(!is_null($rows)) {
                         foreach($rows as $num => $row) {
                             foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);  // CODIFICA CADA CAMPO EN UTF-8
+                                $this->data[$num][$key] = ($value);  // CODIFICA CADA CAMPO EN UTF-8
                             }
                         }
                     }
@@ -208,7 +208,7 @@
                     if(!is_null($rows)) {
                         foreach($rows as $num => $row) {
                             foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);  // CODIFICA CADA CAMPO EN UTF-8
+                                $this->data[$num][$key] = ($value);  // CODIFICA CADA CAMPO EN UTF-8
                             }
                         }
                     }
