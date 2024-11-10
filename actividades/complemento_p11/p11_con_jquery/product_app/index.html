@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <title>ProductApp</title>
     <!-- BOOTSTRAP 4  -->
     <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
   </head>
-  <body onload="init()">
+  <body>
 
     <!-- BARRA DE NAVEGACIÓN  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,10 +32,30 @@
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form">
                 <div class="form-group">
-                  <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
+                  <input type="hidden" id="productId">
+                    <input class="form-control" type="text" name="nombre" id="form-name" placeholder="Nombre" onblur="validarNombre();">
+                    <br/>
+                    <select class="form-control" class="form-select" name="marca" id="form-brand" style="color: #818d98;" onblur="validarMarca();">
+                        <option value="" disabled selected>Selecciona una marca</option>
+                        <option value="Epiphone">Epiphone</option>
+                        <option value="Fender">Fender</option>
+                        <option value="Gibson">Gibson</option>
+                        <option value="Oscar Schmidt">Oscar Schmidt</option>
+                        <option value="Taylor">Taylor</option>
+                        <option value="Yamaha">Yamaha</option>
+                        
+                         
+                    </select>
+                    <br/>
+                    <input class="form-control" type="text" name="modelo" id="form-model" placeholder="Modelo" onblur="validarModelo();">
+                    <br/>
+                    <input class="form-control" type="tel" name="precio" id="form-price" placeholder="Precio" onblur="validarPrecio();">
+                    <br/>
+                    <textarea class="form-control" name="detalles" rows="4" cols="40" id="form-story" placeholder="Detalles"></textarea onblur="validarDetalles();">
+                    <br/>
+                    <input class="form-control" type="tel" name="unidades" id="form-units" placeholder="unidades" onblur="validarUnidades();">
+                    <br/>
+                    <input class="form-control" type="text" name="imagen" id="form-img" placeholder="Imagen" onblur="validarImagen();">
                 </div>
                 <input type="hidden" id="productId">
                 <button class="btn btn-primary btn-block text-center" type="submit" id="submit-button">
@@ -73,7 +93,7 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <!-- Lógica del Frontend -->
-    <script src="app.js"></script>
+    <script src="app.js" charset="UTF-8"></script>
   </body>
 
 </html>
