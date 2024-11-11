@@ -18,7 +18,7 @@
                     // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
                     foreach($rows as $num => $row) {
                         foreach($row as $key => $value) {
-                            $this->data[$num][$key] = utf8_encode($value);
+                            $this->data[$num][$key] = ($value);
                         }
                     }
                 }
@@ -41,7 +41,7 @@
                         // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
                         foreach($rows as $num => $row) {
                             foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);
+                                $this->data[$num][$key] = ($value);
                             }
                         }
                     }
@@ -60,7 +60,7 @@
                     if(!is_null($rows)) {
                         foreach($rows as $num => $row) {
                             foreach($row as $key => $value) {
-                                $this->data[$num][$key] = utf8_encode($value);  // CODIFICA CADA CAMPO EN UTF-8
+                                $this->data[$num][$key] = ($value);  // CODIFICA CADA CAMPO EN UTF-8
                             }
                         }
                     }
