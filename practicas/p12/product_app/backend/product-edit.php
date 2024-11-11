@@ -1,8 +1,8 @@
 <?php
-    use TECWEB\MYAPI\Products;
-    require_once __DIR__.'/myapi/Products.php';
-
-    $productos = new Products('marketzone');
-    $productos->edit( json_decode( json_encode($_POST) ) );
-    echo $productos->getData();
+    use TECWEB\MYAPI\Update;
+    include_once __DIR__.'/vendor/autoload.php';
+    
+    $prod = new Update ('marketzone');
+    $prod->edit(file_get_contents('php://input'));
+    echo $prod->getData();
 ?>
