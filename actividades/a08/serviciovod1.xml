@@ -1,0 +1,97 @@
+<catalogovod>
+    <cuenta>
+        <correo>andy.pangea04@gmail.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>Carlos</usuario>
+                <idioma>Español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>Andy</usuario>
+                <idioma>Inglés</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Ciencia Ficción</nombre>
+                <titulo>
+                    <nombre>Interstellar </nombre>
+                    <duracion>168 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Transformers One</nombre>
+                    <duracion>78 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Transformers: El despertar de las bestias</nombre>
+                    <duracion>128 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Rápidos y Furiosos</nombre>
+                    <duracion>120 minutos</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Terror</nombre>
+                <titulo>
+                    <nombre>El Conjuro</nombre>
+                    <duracion>112 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>It (2017)</nombre>
+                    <duracion>135 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>La Bruja</nombre>
+                    <duracion>92 minutos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Get Out</nombre>
+                    <duracion>104 minutos</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>Friends</nombre>
+                    <duracion>236 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Big Bang Theory</nombre>
+                    <duracion>279 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Cómo conocí a vuestra madre</nombre>
+                    <duracion>208 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Office</nombre>
+                    <duracion>201 capitulos</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Romance</nombre>
+                <titulo>
+                    <nombre>This Is Us</nombre>
+                    <duracion>106 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Virgin River</nombre>
+                    <duracion>40 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Outer Banks</nombre>
+                    <duracion>35 capitulos</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>The Mindy Project</nombre>
+                    <duracion>112 capitulos</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogovod>
