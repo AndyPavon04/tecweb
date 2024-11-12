@@ -1,39 +1,39 @@
-<cuenta correo="andy.pangea04@gmail.com">
+<cuenta correo="usuario@example.com">
     <perfiles>
-        <perfil nombre="Carlos" idioma="Español" />
-        <perfil nombre="Andy" idioma="Inglés" />
+        <perfil nombre="Usuario1" idioma="Español" />
+        <perfil nombre="Usuario2" idioma="Inglés" />
     </perfiles>
     
     <contenido>
         <peliculas>
             <genero nombre="Ciencia Ficción">
-                <titulo nombre="Interstellar" duracion="168" />
-                <titulo nombre="Transformers One" duracion="78" />
-                <titulo nombre="Transformers: El despertar de las bestias" duracion="128" />
-                <titulo nombre="Rápidos y Furiosos" duracion="120" />
+                <titulo nombre="Película 1" duracion="168" />
+                <titulo nombre="Película 2" duracion="78" />
+                <titulo nombre="Película 3" duracion="128" />
+                <titulo nombre="Película 4" duracion="120" />
             </genero>
             
             <genero nombre="Terror">
-                <titulo nombre="El Conjuro" duracion="112" />
-                <titulo nombre="It (2017)" duracion="135" />
-                <titulo nombre="La Bruja" duracion="92" />
-                <titulo nombre="Get Out" duracion="104" />
+                <titulo nombre="Película 5" duracion="112" />
+                <titulo nombre="Película 6" duracion="135" />
+                <titulo nombre="Película 7" duracion="92" />
+                <titulo nombre="Película 8" duracion="104" />
             </genero>
         </peliculas>
         
         <programas>
             <genero nombre="Comedia">
-                <titulo nombre="Friends" duracion="236" />
-                <titulo nombre="The Big Bang Theory" duracion="279" />
-                <titulo nombre="Cómo conocí a vuestra madre" duracion="208" />
-                <titulo nombre="The Office" duracion="201" />
+                <titulo nombre="Documental 1" duracion="236" />
+                <titulo nombre="Documental 2" duracion="279" />
+                <titulo nombre="Documental 3" duracion="208" />
+                <titulo nombre="Documental 4" duracion="201" />
             </genero>
             
             <genero nombre="Romance">
-                <titulo nombre="This Is Us" duracion="106" />
-                <titulo nombre="Virgin River" duracion="40" />
-                <titulo nombre="Outer Banks" duracion="35" />
-                <titulo nombre="The Mindy Project" duracion="112" />
+                <titulo nombre="Serie 1" duracion="106" />
+                <titulo nombre="Serie 2" duracion="40" />
+                <titulo nombre="Serie 3" duracion="35" />
+                <titulo nombre="Serie 4" duracion="112" />
             </genero>
         </programas>
     </contenido>
