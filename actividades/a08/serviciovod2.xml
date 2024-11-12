@@ -1,97 +1,40 @@
-<catalogovod>
-    <cuenta>
-        <correo>diego.navar@gmail.com</correo>
-        <perfiles>
-            <perfil>
-                <usuario>Mom</usuario>
-                <idioma>Español</idioma>
-            </perfil>
-            <perfil>
-                <usuario>Nava</usuario>
-                <idioma>Inglés</idioma>
-            </perfil>
-        </perfiles>
-    </cuenta>
+<cuenta correo="andy.pangea04@gmail.com">
+    <perfiles>
+        <perfil nombre="Carlos" idioma="Español" />
+        <perfil nombre="Andy" idioma="Inglés" />
+    </perfiles>
+    
     <contenido>
         <peliculas>
-            <genero>
-                <nombre>Terror</nombre>
-                <titulo>
-                    <nombre>Siniestro</nombre>
-                    <duracion>110 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>REC</nombre>
-                    <duracion>78 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Hereditary</nombre>
-                    <duracion>127 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>El proyecto de la bruja de blair</nombre>
-                    <duracion>81 minutos</duracion>
-                </titulo>
+            <genero nombre="Ciencia Ficción">
+                <titulo nombre="Interstellar" duracion="168" />
+                <titulo nombre="Transformers One" duracion="78" />
+                <titulo nombre="Transformers: El despertar de las bestias" duracion="128" />
+                <titulo nombre="Rápidos y Furiosos" duracion="120" />
             </genero>
-            <genero>
-                <nombre>Accion</nombre>
-                <titulo>
-                    <nombre>John Wick 4</nombre>
-                    <duracion>169 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Nobody</nombre>
-                    <duracion>98 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>El justiciero</nombre>
-                    <duracion>132 minutos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Busqueda Implacable</nombre>
-                    <duracion>93 minutos</duracion>
-                </titulo>
+            
+            <genero nombre="Terror">
+                <titulo nombre="El Conjuro" duracion="112" />
+                <titulo nombre="It (2017)" duracion="135" />
+                <titulo nombre="La Bruja" duracion="92" />
+                <titulo nombre="Get Out" duracion="104" />
             </genero>
         </peliculas>
+        
         <programas>
-            <genero>
-                <nombre>Dramas</nombre>
-                <titulo>
-                    <nombre>Doctora Cha</nombre>
-                    <duracion>16 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Shin, abogado de divorcios</nombre>
-                    <duracion>12 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Breaking Bad</nombre>
-                    <duracion>62 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Vicenzo</nombre>
-                    <duracion>20 capitulos</duracion>
-                </titulo>
+            <genero nombre="Comedia">
+                <titulo nombre="Friends" duracion="236" />
+                <titulo nombre="The Big Bang Theory" duracion="279" />
+                <titulo nombre="Cómo conocí a vuestra madre" duracion="208" />
+                <titulo nombre="The Office" duracion="201" />
             </genero>
-            <genero>
-                <nombre>Sci-Fi</nombre>
-                <titulo>
-                    <nombre>Alice In Borderland</nombre>
-                    <duracion>16 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Dark</nombre>
-                    <duracion>26 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Love, Death and Robots</nombre>
-                    <duracion>35 capitulos</duracion>
-                </titulo>
-                <titulo>
-                    <nombre>Perdidos en el espacio</nombre>
-                    <duracion>28 capitulos</duracion>
-                </titulo>
+            
+            <genero nombre="Romance">
+                <titulo nombre="This Is Us" duracion="106" />
+                <titulo nombre="Virgin River" duracion="40" />
+                <titulo nombre="Outer Banks" duracion="35" />
+                <titulo nombre="The Mindy Project" duracion="112" />
             </genero>
         </programas>
     </contenido>
-</catalogovod>
+</cuenta>
