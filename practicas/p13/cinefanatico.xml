@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="12345" visitas="10" puntos="200">
+        <nombre>Ansy Pérez Pavón</nombre>
+        <correo>andy.pangea04@gmail,com</correo>
+        <telefono tipo="movil">248569564</telefono>
+    </tarjeta>
+</cinefanatico>

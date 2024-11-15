@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogoVOD SYSTEM "serviciovod2.dtd">
+<catalogoVOD>
+
+    <cuenta correo="andy.pangea04@gmail.com">
+        <perfiles>
+            <perfil usuario="Carlos" idioma="Español"></perfil>
+            <perfil usuario="Andy" idioma="Inglés"></perfil>
+        </perfiles>
+    </cuenta>
+    
+    <contenido>
+        <peliculas>
+            <genero nombre="Ciencia Ficción">
+                <titulo duracion="168 minutos">
+                    <nombre>Interstellar</nombre>
+                </titulo>
+                <titulo duracion="78 minutos">
+                    <nombre>Transformers One</nombre>
+                </titulo>
+                <titulo duracion="128 minutos">
+                    <nombre>Transformers: El despertar de las bestias</nombre>
+                </titulo>
+                <titulo duracion="120 minutos">
+                    <nombre>Rápidos y Furiosos</nombre>
+                </titulo>
+            </genero>
+            
+            <genero nombre="Terror">
+                <titulo duracion="112 minutos">
+                    <nombre>El Conjuro</nombre>
+                </titulo>
+                <titulo duracion="135 minutos">
+                    <nombre>It (2017)</nombre>
+                </titulo>
+                <titulo duracion="92 minutos">
+                    <nombre>La Bruja</nombre>
+                </titulo>
+                <titulo duracion="104 minutos">
+                    <nombre>Get Out</nombre>
+                </titulo>
+            </genero>
+        </peliculas>
+
+        <programas>
+            <genero nombre="Comedia">
+                <titulo duracion="236 capitulos">
+                    <nombre>Friends</nombre>
+                </titulo>
+                <titulo duracion="279 capitulos">
+                    <nombre>The Big Bang Theory</nombre>
+                </titulo>
+                <titulo duracion="208 capitulos">
+                    <nombre>Cómo conocí a vuestra madre</nombre>
+                </titulo>
+                <titulo duracion="201 capitulos">
+                    <nombre>The Office</nombre>
+                </titulo>
+            </genero>
+            
+            <genero nombre="Romance">
+                <titulo duracion="106 capitulos">
+                    <nombre>This Is Us</nombre>
+                </titulo>
+                <titulo duracion="40 capitulos">
+                    <nombre>Virgin River</nombre>
+                </titulo>
+                <titulo duracion="35 capitulos">
+                    <nombre>Outer Banks</nombre>
+                </titulo>
+                <titulo duracion="112 capitulos">
+                    <nombre>The Mindy Project</nombre>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+
+</catalogoVOD>

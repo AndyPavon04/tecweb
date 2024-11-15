@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogoVOD SYSTEM "serviciovod_ep.dtd">
+<catalogoVOD>
+
+    <cuenta correo="andy.pangea04@gmail.com">
+        <perfiles>
+            <perfil usuario="Carlos" idioma="Español"></perfil>
+            <perfil usuario="Andy" idioma="Inglés"></perfil>
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas region="USA">
+            <genero nombre="Ciencia Ficción">
+                <titulo duracion="169 minutos">
+                    <nombre>Avatar: El camino del agua</nombre>
+                </titulo>
+                <titulo duracion="142 minutos">
+                    <nombre>Blade Runner 2049</nombre>
+                </titulo>
+                <titulo duracion="121 minutos">
+                    <nombre>El origen</nombre>
+                </titulo>
+                <titulo duracion="136 minutos">
+                    <nombre>Dune</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Comedia">
+                <titulo duracion="115 minutos">
+                    <nombre>Superbad</nombre>
+                </titulo>
+                <titulo duracion="90 minutos">
+                    <nombre>Step Brothers</nombre>
+                </titulo>
+                <titulo duracion="102 minutos">
+                    <nombre>The Hangover</nombre>
+                </titulo>
+                <titulo duracion="98 minutos">
+                    <nombre>21 Jump Street</nombre>
+                </titulo>
+            </genero>
+        </peliculas>
+
+        <series region="JPN">
+            <genero nombre="Anime">
+                <titulo duracion="24 episodios">
+                    <nombre>Attack on Titan</nombre>
+                </titulo>
+                <titulo duracion="12 episodios">
+                    <nombre>One Punch Man</nombre>
+                </titulo>
+                <titulo duracion="64 episodios">
+                    <nombre>Fullmetal Alchemist: Brotherhood</nombre>
+                </titulo>
+                <titulo duracion="25 episodios">
+                    <nombre>Death Note</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Thriller">
+                <titulo duracion="9 episodios">
+                    <nombre>Squid Game</nombre>
+                </titulo>
+                <titulo duracion="10 episodios">
+                    <nombre>Mindhunter</nombre>
+                </titulo>
+                <titulo duracion="13 episodios">
+                    <nombre>True Detective</nombre>
+                </titulo>
+                <titulo duracion="8 episodios">
+                    <nombre>Black Mirror</nombre>
+                </titulo>
+            </genero>
+        </series>
+    </contenido>
+
+</catalogoVOD>
